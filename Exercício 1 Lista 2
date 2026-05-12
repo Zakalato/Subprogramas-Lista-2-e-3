@@ -1,0 +1,92 @@
+package Lista_2;
+import java.util.Scanner;
+
+public class Exercicio_1 {
+	static Scanner s = new Scanner(System.in);
+
+	
+	public static double calculaCubo(int lado) {
+		return Math.pow(lado, 3);
+	}
+	public static double calculaParal(int larg, int alt, int prof) {
+		return larg*alt*prof;
+	}
+	public static double calculaCilindro(int alt, int raio) {
+		return Math.PI * Math.pow(raio, 2) * alt;
+	}
+	public static double calculaEsfera (int raio) {
+		return 4.0 / 3.0 * Math.PI * Math.pow(raio, 3);
+	}
+	public static double calculaCone(int alt, int raio) {
+		return 1.0 / 3.0 * Math.pow(raio, 2) * alt;
+	}
+	
+	public static void main(String[] args) {
+		System.out.println("Calcular numero volume ? S/N");
+		String calcular = s.next();
+		
+		while(calcular.equalsIgnoreCase("S")) {
+			System.out.println("Informe sua opção [1]Cubo [2]Paralelepípedo [3]Cilindro"
+					+ "[4]Esfera [5]Cone");
+			int opcao = s.nextInt();
+			
+			switch(opcao) {
+			case 1:
+				System.out.println("Informe a medida do lado:");
+				int lado = s.nextInt();
+				System.out.println("Volume: " + calculaCubo(lado));
+				
+				break;
+				
+			case 2:
+				System.out.println("Informe a medida da largura");
+				int larg = s.nextInt();
+				
+				System.out.println("Informe a medida da altura");
+				int alt = s.nextInt();
+				
+				System.out.println("Informe a medida da profundidade");
+				int prof = s.nextInt();
+				
+				System.out.println("Volume: " + calculaParal(larg,alt,prof));
+				break;
+				
+			case 3:
+				System.out.println("Informe a medida do raio");
+				int raio = s.nextInt();
+				
+				System.out.println("Informe a medida da altura");
+				alt = s.nextInt();
+				
+				System.out.println("Volume: " + calculaCilindro(alt,raio));
+				break;
+				
+			case 4:
+				System.out.println("Informe a medida do raio");
+				raio = s.nextInt();
+				
+				System.out.println("Volume: " + calculaEsfera(raio));
+				break;
+				
+			case 5:
+				System.out.println("Informe a medida da altura");
+				alt = s.nextInt();
+				
+				System.out.println("Informe o raio");
+				raio = s.nextInt();
+				
+				System.out.println("Volume: " + calculaCone(alt,raio));
+				break;
+			default:System.out.println("Renicie o programa");
+				break;
+				
+			}
+			
+			System.out.println("Deseja continuar ? S/N");
+			calcular = s.next();
+			
+		}
+
+	}
+
+}
