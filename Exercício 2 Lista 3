@@ -1,0 +1,64 @@
+package Lista_3;
+import java.util.Scanner;
+
+public class Exercicio_2 {
+	
+	static Scanner s = new Scanner(System.in);
+	static int quantperfeito = 0;
+	static int quantNperfeito = 0;
+	static int maiorperfeito = 6;
+	static int menorNperfeito = 0;
+	
+	public static String perfeito(int num) {
+		int soma = 0;
+    	String lista = "";
+    for(int i = 1; i < num ; i++) 
+    	if(num % i == 0) {
+    		soma += i;
+    		lista = lista + " " + i;
+    	}
+    
+    if (soma == num) {
+    	quantperfeito++;
+    	if(num> maiorperfeito) {
+    		num = maiorperfeito;
+    	}
+		return"É numero perfeito. Lista dos divisores: " + lista;
+		
+    }
+    quantNperfeito++;
+    if(num< menorNperfeito) {
+    	num = menorNperfeito;
+    }
+	return "Não é número perfeito";
+		
+	}
+
+	public static void main(String[] args) {
+		
+		System.out.println("Deseja ver se um número é perfeito ? S/N");
+		String continua = s.next();
+		
+		while(continua.equalsIgnoreCase("S")) {
+			System.out.println("Digite seu número");
+			int num = s.nextInt();
+			
+			if(num > 0) {
+			
+			perfeito(num);
+			}
+			
+			System.out.println("Deseja continuar ?");
+			continua = s.next();
+			
+		}
+		
+		System.out.println("Quantidade de números perfeitos: " + quantperfeito);
+		System.out.println("Quantidade de números NÃO perfeitos: " + quantNperfeito);
+		System.out.println("Maior perfeito: " + maiorperfeito);
+		System.out.println("Menor NÃO perfeito: " + menorNperfeito);
+		
+
+	}
+
+}
