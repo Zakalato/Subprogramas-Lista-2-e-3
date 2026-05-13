@@ -1,0 +1,174 @@
+package Lista_3;
+import java.util.Scanner;
+import java.text.DecimalFormat;
+
+public class Exercicio_1 {
+	static Scanner s = new Scanner(System.in);
+	static DecimalFormat df = new DecimalFormat("###0.0###");
+	static int quantcubo = 0;
+	static int quantparal = 0;
+	static int quantcilindro = 0;
+	static int quantesfera = 0;
+	static int quantcone = 0;
+    static double quantvolume = 0;
+    static double totalvolumes = 0;
+    static int totalerros = 0;
+
+    
+    public static double calculaCubo (double lado) {
+    	double cubo = Math.pow(lado, 3);
+    	df.format(cubo);
+    	totalvolumes += cubo;
+    	quantvolume++;
+    	quantcubo++;
+    	return cubo;
+    }
+    
+    public static double calculaParal(double larg, double alt, double prof) {
+    	double paral =larg*alt*prof;
+    	df.format(paral);
+    	totalvolumes += paral;
+    	quantvolume++;
+    	quantparal++;
+    	return paral;
+    }
+    
+    public static double calculaCilindro(double alt, double raio) {
+    	double cilindro = Math.PI * Math.pow(raio, 2) * alt;
+    	df.format(cilindro);
+    	totalvolumes += cilindro;
+    	quantvolume++;
+    	quantcilindro++;
+    	return cilindro;
+    }
+    public static double calculaEsfera(double raio) {
+    	double esfera = 4.0 / 3.0 * Math.PI * Math.pow(raio, 3);
+    	df.format(esfera);
+    	totalvolumes += esfera;
+    	quantvolume++;
+    	quantesfera++;
+    	return esfera;
+    }
+    public static double calculaCone(double alt, double raio) {
+    	double cone = 1.0 / 3.0 * Math.pow(raio, 2) * alt;
+    	df.format(cone);
+    	totalvolumes += cone;
+    	quantvolume++;
+    	quantcone++;
+    	return cone;
+    }
+    public static void main (String[] args) {
+    	System.out.println("Deseja calcular um volume ? S/N");
+    	String continua = s.next();
+    	
+    	while(continua.equalsIgnoreCase("S")) {
+    		System.out.println("Deseja calcular qual Volume?");
+    		System.out.println("[1]Cubo [2]Paralelepípedo [3]Cilindro [4]Esfera [5]Cone");
+    		int opcao = s.nextInt();
+    		
+    switch(opcao) {
+    	case 1:
+			System.out.println("Informe a medida do lado:");
+			int lado = s.nextInt();
+			if(lado<= 0) {
+				totalerros++;
+				
+				System.out.println("Valor incorreto, Digite [S]");
+				continua = s.next();
+			}
+			else
+			System.out.println("Volume: " + calculaCubo(lado));
+			
+			break;
+			
+		case 2:
+			System.out.println("Informe a medida da largura");
+			int larg = s.nextInt();
+			
+			System.out.println("Informe a medida da altura");
+			int alt = s.nextInt();
+			
+			System.out.println("Informe a medida da profundidade");
+			int prof = s.nextInt();
+			if(larg < 0 || alt < 0 || prof < 0) {
+				
+				totalerros++;
+				System.out.println("Valor incorreto, DIgite [S]");
+				continua = s.next();
+			}
+			else
+			System.out.println("Volume: " + calculaParal(larg,alt,prof));
+			break;
+			
+		case 3:
+			System.out.println("Informe a medida do raio");
+			int raio = s.nextInt();
+			
+			
+			System.out.println("Informe a medida da altura");
+			alt = s.nextInt();
+			if(raio < 0 || alt < 0 ) {
+				
+				totalerros++;
+				System.out.println("Valor incorreto, Digite [S]");
+				continua = s.next();
+			}
+			else
+			
+			System.out.println("Volume: " + calculaCilindro(alt,raio));
+			break;
+			
+		case 4:
+			System.out.println("Informe a medida do raio");
+			raio = s.nextInt();
+			if(raio < 0) {
+				
+				totalerros++;
+				System.out.println("Valor incorreto, Digite [S]");
+				continua = s.next();
+			}
+			else
+			
+			System.out.println("Volume: " + calculaEsfera(raio));
+			break;
+			
+		case 5:
+			System.out.println("Informe a medida da altura");
+			alt = s.nextInt();
+			
+			System.out.println("Informe o raio");
+			raio = s.nextInt();
+			
+			if(raio < 0 || alt < 0 ) {
+				
+				totalerros++;
+				System.out.println("Valor incorreto, Digite [S]");
+				continua = s.next();
+			}
+			
+			else
+			
+			System.out.println("Volume: " + calculaCone(alt,raio));
+			break;
+		default:System.out.println("Renicie o programa");
+			break;
+    		
+    		}
+    
+           System.out.println("Você deseja continuar?");
+           continua = s.next();
+    
+    	}
+    	
+    	System.out.println("A média geral dos volumes é: " + (totalvolumes / quantvolume));
+    	System.out.println("Quantidade de Cubos: " + quantcubo);
+    	System.out.println("Quantidade de Paralelepípedos: " + quantparal);
+    	System.out.println("Quantidade de Cilindros: " + quantcilindro);
+    	System.out.println("Quantidade de Esferas: " + quantesfera);
+    	System.out.println("Quantidade de Cones: " + quantcone);
+    	System.out.println("Quantidades de casos impossiveis: " + totalerros);
+       	
+    	}
+
+
+}
