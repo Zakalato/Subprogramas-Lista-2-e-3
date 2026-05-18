@@ -6,8 +6,8 @@ public class Exercicio_2 {
 	static Scanner s = new Scanner(System.in);
 	static int quantperfeito = 0;
 	static int quantNperfeito = 0;
-	static int maiorperfeito = 6;
-	static int menorNperfeito = 0;
+	static int maiorperfeito = 0;
+	static int menorNperfeito = Integer.MAX_VALUE;
 	
 	public static String perfeito(int num) {
 		int soma = 0;
@@ -21,14 +21,14 @@ public class Exercicio_2 {
     if (soma == num) {
     	quantperfeito++;
     	if(num> maiorperfeito) {
-    		num = maiorperfeito;
+    		maiorperfeito = num;
     	}
 		return"É numero perfeito. Lista dos divisores: " + lista;
 		
     }
     quantNperfeito++;
     if(num< menorNperfeito) {
-    	num = menorNperfeito;
+    	menorNperfeito = num;
     }
 	return "Não é número perfeito";
 		
@@ -44,8 +44,7 @@ public class Exercicio_2 {
 			int num = s.nextInt();
 			
 			if(num > 0) {
-			
-			perfeito(num);
+			System.out.println(perfeito(num));
 			}
 			
 			System.out.println("Deseja continuar ?");
