@@ -1,0 +1,107 @@
+package Lista_3;
+
+import java.util.Scanner;
+import java.text.DecimalFormat;
+
+public class Exercicio_3 {
+
+    static Scanner s = new Scanner(System.in);
+    static DecimalFormat df = new DecimalFormat("00");
+    static DecimalFormat df2 = new DecimalFormat("#0.00");
+
+    static int totalSec = 0;
+    static int cont = 0;
+
+    static int maiorTempo = 0;
+    static int menorTempo = Integer.MAX_VALUE;
+
+    static String materialMaiorTempo = "";
+    static String materialMenorTempo = "";
+
+    public static String calculaTempo(int sec) {
+        int horas = sec / 3600;
+        sec = sec % 3600;
+
+        int min = sec / 60;
+        sec = sec % 60;
+
+        return df.format(horas) + ":" + df.format(min) + ":" + df.format(sec);
+    }
+
+    public static int calculaSegundos(double massaInicial) {
+        int ciclos = 0;
+        double massaFinal = massaInicial;
+
+        while (massaFinal >= 0.5) {
+            massaFinal = massaFinal / 2;
+            ciclos++;
+        }
+
+        return ciclos * 50;
+    }
+
+    public static double calculaMassaFinal(double massaInicial) {
+        double massaFinal = massaInicial;
+
+        while (massaFinal >= 0.5) {
+            massaFinal = massaFinal / 2;
+        }
+
+        return massaFinal;
+    }
+
+    public static void main(String[] args) {
+
+        System.out.println("Deseja calcular algum material? S/N");
+        String continua = s.next();
+
+        while (continua.equalsIgnoreCase("S")) {
+
+            System.out.println("Qual o nome do seu material?");
+            String material = s.next();
+
+            System.out.println("Digite sua massa inicial:");
+            double massaInicial = s.nextDouble();
+
+            double massaFinal = calculaMassaFinal(massaInicial);
+            int segundos = calculaSegundos(massaInicial);
+
+            totalSec += segundos;
+            cont++;
+
+            if (segundos > maiorTempo) {
+                maiorTempo = segundos;
+                materialMaiorTempo = material;
+            }
+
+            if (segundos < menorTempo) {
+                menorTempo = segundos;
+                materialMenorTempo = material;
+            }
+
+            System.out.println();
+            System.out.println("Material: " + material);
+            System.out.println("Massa inicial: " + df2.format(massaInicial));
+            System.out.println("Massa final: " + df2.format(massaFinal));
+            System.out.println("Tempo: " + calculaTempo(segundos));
+
+            System.out.println("\nDeseja calcular outro material? S/N");
+            continua = s.next();
+        }
+
+        if (cont > 0) {
+            int mediaTempo = totalSec / cont;
+
+            System.out.println("\n===== RESULTADO FINAL =====");
+            System.out.println("Tempo médio dos materiais: " + calculaTempo(mediaTempo));
+            System.out.println("Material que levou mais tempo: " + materialMaiorTempo);
+            System.out.println("Maior tempo: " + calculaTempo(maiorTempo));
+            System.out.println("Material que levou menos tempo: " + materialMenorTempo);
+            System.out.println("Menor tempo: " + calculaTempo(menorTempo));
+        } else {
+            System.out.println("Nenhum material foi informado.");
+        }
+
+        s.close();
+    }
+}
