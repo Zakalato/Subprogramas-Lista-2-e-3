@@ -1,0 +1,50 @@
+package Lista_2;
+import java.util.Scanner;
+import java.text.DecimalFormat;
+public class Exercicio_3 {
+	
+    static Scanner s = new Scanner(System.in);
+    static DecimalFormat df = new DecimalFormat("00");
+    static DecimalFormat df2 = new DecimalFormat("#0.00");
+
+	public static String calculaTempo (int sec ){
+		int horas = sec / 3600;
+		sec = sec % 3600;
+		
+		int min = sec / 60;
+		
+		sec = sec % 60;
+		
+		return df.format(horas) + ":" + df.format(min) + ":" + df.format(sec);
+	}
+
+	public static String calcula (double massaInicial){
+		
+		int ciclos = 0;
+		double massaFinal = massaInicial;
+		String msg = "";
+		
+		while (massaFinal >= 0.5){
+			massaFinal = massaFinal / 2;
+			ciclos++;
+		}
+		
+		
+		String tempo = calculaTempo(ciclos * 50);
+		
+		
+		msg = "Massa inicial: " + massaInicial + "\n" + "Massa final: " + df2.format(massaFinal) + "\n" + 
+			  "Tempo: " + tempo;
+		
+		return msg;
+	}
+	
+	public static void main(String[] args) {
+        System.out.println("Digite sua massa inicial:");
+        double massaInicial = s.nextDouble();
+        
+		System.out.println(calcula(massaInicial));
+	}
+
+
+}
